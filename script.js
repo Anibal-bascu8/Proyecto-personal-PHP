@@ -98,47 +98,26 @@ $(document).ready(function () {
   }
 
   // Función para validar el formato de RUT chileno
-  function validarRut($rut) {
-    // Eliminar puntos y guión del RUT
-    $rut = preg_replace('/[^k0-9]/i', '', $rut);
 
-    // Verificar que el RUT no esté vacío
-    if (empty($rut)) {
-      return false;
+
+  function validarRut(rut) {
+    rut = rut.replace(/[^\dkK]/g, ''); // Eliminar todos los caracteres no numéricos excepto 'k' o 'K' al final
+    if (!/^\d{7,8}[0-9kK]$/.test(rut)) return false; // Verificar el formato del RUT
+
+    const dv = rut.slice(-1).toUpperCase(); // Obtener el dígito verificador
+    const rutSinDv = rut.slice(0, -1); // Obtener el RUT sin el dígito verificador
+
+    let suma = 0;
+    let factor = 2;
+    for (let i = rutSinDv.length - 1; i >= 0; i--) {
+      suma += factor * parseInt(rutSinDv.charAt(i));
+      factor = factor === 7 ? 2 : factor + 1;
     }
 
-    // Verificar longitud mínima del RUT
-    if (strlen($rut) < 3) {
-      return false;
-    }
+    const dvCalculado = 11 - (suma % 11); // Calcular el dígito verificador esperado
+    const dvEsperado = dvCalculado === 11 ? '0' : dvCalculado === 10 ? 'K' : dvCalculado.toString();
 
-    // Separar el RUT y el dígito verificador
-    $rut = substr($rut, 0, -1);
-    $dv = strtoupper(substr($rut, -1));
-
-    // Verificar que el RUT sea numérico
-    if (!is_numeric($rut)) {
-      return false;
-    }
-
-    // Calcular el dígito verificador esperado
-    $suma = 0;
-    $multiplo = 2;
-
-    for ($i = strlen($rut) - 1; $i >= 0; $i--) {
-      $suma += $rut[$i] * $multiplo;
-      $multiplo = ($multiplo == 7) ? 2 : $multiplo + 1;
-    }
-
-    $dv_esperado = 11 - ($suma % 11);
-    $dv_esperado = ($dv_esperado == 11) ? 0 : (($dv_esperado == 10) ? 'K' : $dv_esperado);
-
-    // Comparar el dígito verificador ingresado con el esperado
-    if ($dv != $dv_esperado) {
-      return false;
-    }
-
-    return true;
+    return dv === dvEsperado; // Comparar el dígito verificador ingresado con el dígito verificador calculado
   }
 
 
@@ -149,16 +128,16 @@ $(document).ready(function () {
     if (email.trim() === '') {
       return false;
     }
-  
+
     // Verificar el formato del email utilizando una expresión regular
     var patron = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!patron.test(email)) {
       return false;
     }
-  
+
     return true;
   }
-  
+
 
   // Función para guardar el voto mediante Ajax
   function guardarVoto() {
