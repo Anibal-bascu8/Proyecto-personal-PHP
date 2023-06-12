@@ -1,0 +1,7 @@
+Proyecto-postulacion-Anibal-Bascunan
+Este repositorio tiene como propósito poder alojar el código Fuente del proyecto. En este repositorio se encontrará a su disposición el código Fuente con el formulario.
+
+Para poder hacer uso de este se recomienda instalar Xampp en su versión "XAMPP para Windows 8.0.28, 8.1.17 & 8.2.4" o alguna equivalente.
+
+Además del código Fuente se tendra también un archivo Script sql para la creación de las bases de datos con su respectiva creación de tablas y población de datos
+
