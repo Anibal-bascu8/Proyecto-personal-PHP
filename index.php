@@ -1,8 +1,8 @@
 <?php
 
 require_once("common/constantes.php");
-require_once("consultores/dbInsert.php");
-require_once("consultores/dbSelect.php");
+require_once("common/dbInsert.php");
+require_once("common/dbSelect.php");
 
 
 $arrayRegiones  = selectRegiones();
@@ -37,8 +37,10 @@ $totalCandidatos  = count($arrayCandidatos);
         },
         success: function(response) {
           // Parsea la respuesta JSON recibida
+          // console.log(response);
           // return
-          var comunas = JSON.parse(response);
+          // var comunas = JSON.parse(response);
+          var comunas = response
 
           // Limpia y actualiza el select de comunas
           var selectComunas = document.getElementById('comuna');
