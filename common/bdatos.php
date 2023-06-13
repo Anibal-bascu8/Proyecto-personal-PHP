@@ -38,9 +38,9 @@ function ejecutar($query, $tipoQuery)
   $arreglo = array();
 
   $constBDServidor = "localhost";
-  $constBDNombre   = "cen74533_bysal_bd";
-  $constBDUsuario  = "cen74533_bysal_user";
-  $constBDPassword = "MySql2021";
+  $constBDNombre   = "formulario";
+  $constBDUsuario  = "root";
+  $constBDPassword = "";
   //Se abre la conexión
   $obj_conexion = mysqli_connect($constBDServidor, $constBDUsuario, $constBDPassword, $constBDNombre);
 
@@ -68,7 +68,7 @@ function ejecutar($query, $tipoQuery)
     //borrar luego
     //echo "<br>1.resultado -->". intVal($resultado) . "<--";
     //echo "<br>2.resultado -->". mysql_result($resultado,0,0);
-    list($resul) = mysql_fetch_row($resultado);
+    list($resul) = mysqli_fetch_row($resultado);
 
     //echo "<br>EJECUTAR por VALOR-->". $resul;
 
@@ -98,27 +98,6 @@ function ejecutar($query, $tipoQuery)
   }
 }
 
-//funcion exclusiva para logear en el sistema, anti sql injection
-function ejecutarEspecial($query, $data, $variable){
-	
-	  $constBDServidor = "localhost";
-	  $constBDNombre   = "cen74533_bysal_bd";
-	  $constBDUsuario  = "cen74533_bysal_user";
-	  $constBDPassword = "MySql2021";
-	  //Se abre la conexión
-	  
-	  $conneccion = new PDO("mysql:host=". $constBDServidor.";dbname=".$constBDNombre, $constBDUsuario, $constBDPassword);
-	  
-
-	  $ejecutarQuery = $conneccion->prepare($query);
-	  $ejecutarQuery->bindParam($variable, $data, PDO::PARAM_STR);
-	  $ejecutarQuery->execute();
-	  
-	  $resultado = $ejecutarQuery->fetch(PDO::FETCH_ASSOC);
-	  
-	  return $resultado;
-
-}
 
 // Muestra un mensaje de error si la query falla.
 function db_error($query)
@@ -140,9 +119,5 @@ function db_error($query)
 // Se DESCONECTA a la bdatos
 function dbSalir()
 {
-  mysql_close();
+  // mysql_close();
 }
-
-
-?>
-

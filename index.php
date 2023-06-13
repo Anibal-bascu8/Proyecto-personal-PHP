@@ -1,16 +1,15 @@
 <?php
 
 require_once("common/constantes.php");
-require_once("consultores/cargar_candidatos.php");
-require_once("consultores/cargar_comunas.php");
-require_once("consultores/cargar_regiones.php.php");
+require_once("consultores/dbInsert.php");
+require_once("consultores/dbSelect.php");
 
 
-$arrayRegiones  = buscarRegiones();
+$arrayRegiones  = selectRegiones();
 $totalRegiones  = count($arrayRegiones);
 
 
-$arrayCandidatos  = buscarCandidatos();
+$arrayCandidatos  = selectCandidatos();
 $totalCandidatos  = count($arrayCandidatos);
 
 
