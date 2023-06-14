@@ -64,15 +64,15 @@ function validarVoto($rut)
 
   $sql = $sql . " WHERE 1 = 1  ";
 
-  $sql = $sql . " AND rut = " . $rut;
+  $sql = $sql . " AND rut = '" . $rut. "'";
 
 
-  //echo $sql;
+  // echo $sql;
 
   $arrResultado = ejecutar($sql, "Select");
 
-  
-  echo $arrResultado;
+  // print_r($arrResultado);
+
   return $arrResultado;
 
   

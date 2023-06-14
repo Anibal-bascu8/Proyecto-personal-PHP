@@ -1,3 +1,31 @@
+
+
+--------------------------------------- ADVERTENCIA ---------------------------------------
+
+---------------   ESTE SCRIPT BORRARA PREVIAMENTE LA BASE DE DATOS PARA VOLER A CREARLA, ---------------
+---------------   DE ESTA MANERA EVITAR EROORES DURANTE LA EJECUCION DE TODO EL SCRIPT   ---------------
+---------------   SI POSEE DATOS IMPORTANTES ASEGURESE DE RESPALDAR LA INFORMACION       ---------------
+---------------   ANTES DE EJECUTAR                                                      ---------------
+
+-- Verificar si la base de datos existe
+IF EXISTS (SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'formulario') 
+BEGIN
+    -- La base de datos existe, se eliminará
+    DROP DATABASE formulario;
+    PRINT 'Base de datos eliminada correctamente.';
+END
+
+-- Crear la base de datos
+CREATE DATABASE formulario;
+PRINT 'Base de datos creada correctamente.';
+
+
+---------------   ESTE SCRIPT BORRARA PREVIAMENTE LA BASE DE DATOS PARA VOLER A CREARLA, ---------------
+---------------   DE ESTA MANERA EVITAR EROORES DURANTE LA EJECUCION DE TODO EL SCRIPT   ---------------
+---------------   SI POSEE DATOS IMPORTANTES ASEGURESE DE RESPALDAR LA INFORMACION       ---------------
+---------------   ANTES DE EJECUTAR                                                      ---------------
+--------------------------------------- ADVERTENCIA ---------------------------------------
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
